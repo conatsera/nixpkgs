@@ -24,7 +24,7 @@
   python,
   poppler,
   wxPython,
-  opencascade-occt_7_6,
+  opencascade-occt,
   libngspice,
   libspnav,
   valgrind,
@@ -49,7 +49,6 @@ assert lib.assertMsg (
 assert testing -> !stable -> throw "testing implies stable and cannot be used with stable = false";
 
 let
-  opencascade-occt = opencascade-occt_7_6;
   inherit (lib)
     cmakeBool
     cmakeFeature
