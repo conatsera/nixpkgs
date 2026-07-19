@@ -5,6 +5,7 @@
   fetchpatch,
   cmake,
   ninja,
+  expat,
   rapidjson,
   tcl,
   tk,
@@ -19,13 +20,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "opencascade-occt";
-  version = "7.9.3";
+  version = "8.0.0.p1";
 
   src = fetchFromGitHub {
     owner = "Open-Cascade-SAS";
     repo = "OCCT";
     tag = "V${builtins.replaceStrings [ "." ] [ "_" ] finalAttrs.version}";
-    hash = "sha256-Zp4m+f1wrzynoCrzIwvYELUXsY/NQIBY+HFk5UteufI=";
+    hash = "sha256-R2Olyic1VDdpfwKxGDclo90RfrMgs26HFsPUw43J0LU=";
   };
 
   patches = lib.optionals (lib.versionOlder finalAttrs.version "7.9") [
@@ -49,6 +50,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
+    expat
     tcl
     tk
     libGL
