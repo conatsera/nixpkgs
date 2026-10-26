@@ -48,6 +48,10 @@ stdenv.mkDerivation (finalAttrs: {
     ./CVE-2026-11850.patch
     # https://github.com/krb5/krb5/pull/1506
     ./CVE-2026-40355-and-CVE-2026-40356.patch
+    # https://github.com/krb5/krb5/commit/f5bbfa4821cf590a4748f96d0e016bc0485e95c4
+    ./openssl-4-compat-part1.patch
+    # https://github.com/krb5/krb5/commit/5e4e8452328804948d042235bbf58ca457795857
+    ./openssl-4-compat-part2.patch
   ]
   ++ lib.optionals stdenv.hostPlatform.isFreeBSD [
     (fetchpatch {
