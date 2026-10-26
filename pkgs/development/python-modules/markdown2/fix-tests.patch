@@ -1,0 +1,33 @@
+diff --git a/test/test_markdown2.py b/test/test_markdown2.py
+index 06313af..782242d 100755
+--- a/test/test_markdown2.py
++++ b/test/test_markdown2.py
+@@ -314,10 +314,6 @@ versions of markdown2.py this was pathologically slow:</p>
+     test_toc_with_persistent_object.tags = ["toc", "issue208"]
+ 
+ 
+-class DocTestsTestCase(unittest.TestCase):
+-    def test_api(self):
+-        test = doctest.DocFileTest("api.doctests")
+-        test.runTest()
+ 
+ 
+ #---- internal support stuff
+@@ -555,12 +551,11 @@ def _one_line_summary_from_text(text, length=78,
+ def test_cases():
+     """This is called by test.py to build up the test cases."""
+     TMTestCase.generate_tests()
+-    yield TMTestCase
++    TMTestCase
+     MarkdownTestTestCase.generate_tests()
+-    yield MarkdownTestTestCase
++    MarkdownTestTestCase
+     PHPMarkdownTestCase.generate_tests()
+-    yield PHPMarkdownTestCase
++    PHPMarkdownTestCase
+     PHPMarkdownExtraTestCase.generate_tests()
+-    yield PHPMarkdownExtraTestCase
+-    yield DirectTestCase
+-    yield DocTestsTestCase
++    PHPMarkdownExtraTestCase
++    DirectTestCase

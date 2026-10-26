@@ -5,6 +5,7 @@
   latex2mathml,
   pygments,
   pytest7CheckHook,
+  pythonAtLeast,
   setuptools,
   wavedrom,
 }:
@@ -20,6 +21,10 @@ buildPythonPackage rec {
     tag = version;
     hash = "sha256-h0vzv59RsceTZSvFF9DX5D6YanAKMTG3cNc1napXMyI=";
   };
+
+  patches = [ ] ++ lib.optionals (pythonAtLeast "3.15") [
+    ./fix-tests.patch
+  ];
 
   build-system = [ setuptools ];
 
