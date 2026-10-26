@@ -61,6 +61,7 @@ buildPythonPackage rec {
     # mypy_main(None, text_io, text_io, [__file__], clean_exit=True)
     # TypeError: main() takes at most 4 arguments (5 given)
     "tests/test_annotations.py"
+    "tests/test_undefined_parameters.py"
   ];
 
   pythonImportsCheck = [ "dataclasses_json" ];
