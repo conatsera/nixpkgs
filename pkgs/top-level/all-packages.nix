@@ -6133,7 +6133,7 @@ with pkgs;
     libressl_4_3
     ;
 
-  openssl = openssl_3_5;
+  openssl = openssl_4_0;
 
   openssl_oqs = openssl.override {
     providers = [
