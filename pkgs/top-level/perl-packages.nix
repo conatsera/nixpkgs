@@ -26648,15 +26648,15 @@ with self;
       hash = "sha256-R8LyswDy5xYtcdaZ9jPdajWwYloAy9qMUKwBFEqTlqk=";
     };
     buildInputs = [
-      pkgs.openssl
+      pkgs.openssl_3_5
       pkgs.zlib
     ];
     doCheck = false; # Test performs network access.
     preConfigure = ''
       mkdir openssl
-      ln -s ${lib.getLib pkgs.openssl}/lib openssl
-      ln -s ${pkgs.openssl.bin}/bin openssl
-      ln -s ${pkgs.openssl.dev}/include openssl
+      ln -s ${lib.getLib pkgs.openssl_3_5}/lib openssl
+      ln -s ${pkgs.openssl_3_5.bin}/bin openssl
+      ln -s ${pkgs.openssl_3_5.dev}/include openssl
       export OPENSSL_PREFIX=$(realpath openssl)
     '';
     meta = {
