@@ -1,0 +1,30 @@
+diff --git a/tests/test_wheel.py b/tests/test_wheel.py
+index 22c7211..cb3882f 100644
+--- a/tests/test_wheel.py
++++ b/tests/test_wheel.py
+@@ -217,7 +217,7 @@ def test_sharedlib_in_package_rpath(package_sharedlib_in_package, tmp_path):
+ @pytest.mark.skipif(sys.platform in {'win32', 'cygwin'}, reason='requires RPATH support')
+ def test_sharedlib_in_package_rpath_ldflags(package_sharedlib_in_package, tmp_path, monkeypatch):
+     origin = '@loader_path' if sys.platform == 'darwin' else '$ORIGIN'
+-    extra_rpath = {f'{origin}/test-ldflags', '/usr/lib/test-ldflags'}
++    extra_rpath = {f'{origin}/test-ldflags'}
+     ldflags = ' '.join(f'-Wl,-rpath,{p}' for p in extra_rpath)
+     monkeypatch.setenv('LDFLAGS', ldflags)
+ 
+@@ -288,7 +288,7 @@ def test_link_against_external_lib_rpath(package_link_against_external_lib, tmp_
+ @pytest.mark.skipif(sys.platform in {'win32', 'cygwin'}, reason='requires RPATH support')
+ def test_link_against_local_lib_rpath_ldflags(package_link_against_local_lib, tmp_path, monkeypatch):
+     origin = '@loader_path' if sys.platform == 'darwin' else '$ORIGIN'
+-    extra_rpath = {f'{origin}/test-ldflags', '/usr/lib/test-ldflags'}
++    extra_rpath = {f'{origin}/test-ldflags'}
+     ldflags = ' '.join(f'-Wl,-rpath,{p}' for p in extra_rpath)
+     monkeypatch.setenv('LDFLAGS', ldflags)
+ 
+@@ -309,7 +309,6 @@ def test_uneeded_rpath(wheel_purelib_and_platlib, tmp_path):
+     rpath = mesonpy._rpath.get_rpath(tmp_path / f'plat{EXT_SUFFIX}')
+ 
+     assert not any(path.startswith(origin) for path in rpath)
+-    assert '/usr/local/lib' in rpath
+     assert not any(path.endswith('private') for path in rpath) or not BUILD_RPATH_SUPPORT
+ 
+ 
