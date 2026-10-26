@@ -395,10 +395,6 @@ stdenv.mkDerivation (finalAttrs: {
   ++ optionals (pythonAtLeast "3.13") [
     ./3.13/virtualenv-permissions.patch
   ]
-  ++ optionals mimetypesSupport [
-    # Make the mimetypes module refer to the right file
-    ./mimetypes.patch
-  ]
   ++ optionals (hasDistutilsCxxPatch && pythonOlder "3.12") [
     # Fix for http://bugs.python.org/issue1222585
     # Upstream distutils is calling C compiler to compile C++ code, which
@@ -457,6 +453,11 @@ stdenv.mkDerivation (finalAttrs: {
       "mingw-python3_win-modules.patch"
     ])
   );
+
+  patchPhase = optionalString (mimetypesSupport) ''
+    # Make the mimetypes module refer to the right file
+    patch -p1 -l ./mimetypes.patch
+  '';
 
   postPatch =
     optionalString (!stdenv.hostPlatform.isWindows) ''
