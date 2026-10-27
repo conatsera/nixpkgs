@@ -1880,7 +1880,7 @@ with pkgs;
   buildEmscriptenPackage = callPackage ../development/em-modules/generic { };
 
   emscripten = callPackage ../development/compilers/emscripten {
-    llvmPackages = llvmPackages_22;
+    llvmPackages = llvmPackages_23;
   };
 
   emscriptenPackages = recurseIntoAttrs (callPackage ./emscripten-packages.nix { });
@@ -3742,7 +3742,7 @@ with pkgs;
   libllvm = llvmPackages.libllvm;
   llvm-manpages = llvmPackages.llvm-manpages;
 
-  llvmPackages = llvmPackages_21;
+  llvmPackages = llvmPackages_23;
 
   inherit
     (rec {
@@ -3797,6 +3797,13 @@ with pkgs;
   llvm_22 = llvmPackages_22.llvm;
   bolt_22 = llvmPackages_22.bolt;
   flang_22 = llvmPackages_22.flang;
+
+  clang_23 = llvmPackages_23.clang;
+  lld_23 = llvmPackages_23.lld;
+  lldb_23 = llvmPackages_23.lldb;
+  llvm_23 = llvmPackages_23.llvm;
+  bolt_23 = llvmPackages_23.bolt;
+  flang_23 = llvmPackages_23.flang;
 
   mitschemeX11 = mitscheme.override {
     enableX11 = true;
