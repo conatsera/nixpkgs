@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   openssl,
   sqlite,
   autoreconfHook,
@@ -18,6 +19,17 @@ stdenv.mkDerivation (finalAttrs: {
     rev = "${finalAttrs.version}";
     hash = "sha256-gwqdgGCVPQwPkE6gFlZxZdk6Ln/qZn3CmMfbcLm9p04=";
   };
+
+  patches = [
+    (fetchpatch {
+      url = "https://github.com/softhsm/SoftHSMv2/commit/57e10cbbe75069be92c7e9720c180a05833481fc.patch";
+      hash = "sha256-P+9LO/vAfHnJq3ee1V4xQrgJ8lve+geC+p4pY6Eklxs=";
+    })
+    (fetchpatch {
+      url = "https://github.com/softhsm/SoftHSMv2/commit/d23ea09d318c03c033420d065f1c64b019cc94ed.patch";
+      hash = "sha256-CZZoNPDcd7gBURCTFYU1MaI58PzD3ks5R0RMjZTDqiE=";
+    })
+  ];
 
   nativeBuildInputs = [
     autoreconfHook
