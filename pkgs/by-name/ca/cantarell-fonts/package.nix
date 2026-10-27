@@ -4,7 +4,7 @@
   fetchFromGitLab,
   meson,
   ninja,
-  python3,
+  python314,
   gettext,
   gitUpdater,
 }:
@@ -24,11 +24,11 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     meson
     ninja
-    python3.pkgs.afdko # for otfautohint
-    python3.pkgs.cffsubr
-    python3.pkgs.ufo2ft
-    python3.pkgs.ufolib2
-    python3.pkgs.uharfbuzz
+    python314.pkgs.afdko # for otfautohint
+    python314.pkgs.cffsubr
+    python314.pkgs.ufo2ft
+    python314.pkgs.ufolib2
+    python314.pkgs.uharfbuzz
     gettext
   ];
 

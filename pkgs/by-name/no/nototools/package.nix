@@ -2,10 +2,10 @@
   fetchFromGitHub,
   lib,
   bash,
-  python3Packages,
+  python314Packages,
 }:
 
-python3Packages.buildPythonApplication (finalAttrs: {
+python314Packages.buildPythonApplication (finalAttrs: {
   pname = "nototools";
   version = "0.4.1";
   pyproject = true;
@@ -17,7 +17,7 @@ python3Packages.buildPythonApplication (finalAttrs: {
     sha256 = "sha256-QQVAaBUO5rGTctDssKx77X6xuw8Jvkstr3sYnvIsXgM=";
   };
 
-  build-system = with python3Packages; [
+  build-system = with python314Packages; [
     setuptools
     setuptools-scm
   ];
@@ -27,7 +27,7 @@ python3Packages.buildPythonApplication (finalAttrs: {
     "typed-ast"
   ];
 
-  dependencies = with python3Packages; [
+  dependencies = with python314Packages; [
     afdko
     appdirs
     attrs
@@ -55,8 +55,8 @@ python3Packages.buildPythonApplication (finalAttrs: {
   ];
 
   nativeCheckInputs = [
-    python3Packages.pillow
-    python3Packages.six
+    python314Packages.pillow
+    python314Packages.six
     bash
   ];
 
