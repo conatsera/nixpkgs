@@ -7,6 +7,7 @@
   stdenv,
   which,
   buildPackages,
+  fetchpatch,
 }:
 
 stdenv.mkDerivation rec {
@@ -17,6 +18,13 @@ stdenv.mkDerivation rec {
     url = "http://www.dest-unreach.org/socat/download/socat-${version}.tar.bz2";
     hash = "sha256-JbxkdikrLmFCIJicd7C2/Kh7slJdl0ezGmY5sftgJBg=";
   };
+
+  patches = [
+    (fetchpatch {
+      url = "https://src.fedoraproject.org/rpms/socat/raw/rawhide/f/socat-1.8.1.0-openssl4.patch";
+      hash = "sha256-1VrkgHrby1bQy0fKf4NNubyIJdyyaF18JYd0LXnN6KE=";
+    })
+  ];
 
   postPatch = ''
     patchShebangs test.sh
