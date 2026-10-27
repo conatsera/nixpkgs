@@ -47,6 +47,10 @@ let
       hash = "sha256-8uyOfu7wUAWRcG03RVXwzrEYgiBo51+jsyvgfdIYT2w=";
     };
 
+    patches = [
+      ./allow-tls-v1_3.patch
+    ];
+
     pyproject = false;
 
     passthru = { inherit python; }; # pass it so that the same version can be used in hg2git
@@ -160,6 +164,8 @@ let
 
         # https://bz.mercurial-scm.org/show_bug.cgi?id=6887
         propagatedBuildInputs = [ setuptools ];
+
+        inherit (mercurial) patches;
 
         postPatch = ''
           patchShebangs .
