@@ -6,7 +6,7 @@
   automake,
   pkg-config,
   help2man,
-  openssl,
+  openssl_3_5,
   libuuid,
   gnu-efi,
   libbfd,
@@ -40,7 +40,7 @@ stdenv.mkDerivation (finalAttrs: {
     deterministic-host-uname # build system incorrectly uses uname to determine host CPU
   ];
   buildInputs = [
-    openssl
+    openssl_3_5
     libuuid
     libbfd
     gnu-efi
