@@ -32,6 +32,7 @@
 
     python311 = callPackage ./cpython {
       self = __splicedPackages.python311;
+      openssl = __splicedPackages.openssl_3_5;
       sourceVersion = {
         major = "3";
         minor = "11";
@@ -44,6 +45,7 @@
 
     python312 = callPackage ./cpython {
       self = __splicedPackages.python312;
+      openssl = __splicedPackages.openssl_3_5;
       sourceVersion = {
         major = "3";
         minor = "12";
@@ -56,6 +58,7 @@
 
     python313 = callPackage ./cpython {
       self = __splicedPackages.python313;
+      openssl = __splicedPackages.openssl_3_5;
       sourceVersion = {
         major = "3";
         minor = "13";
@@ -69,6 +72,7 @@
     python314 = callPackage ./cpython (
       {
         self = __splicedPackages.python314;
+        openssl = __splicedPackages.openssl_3_5;
         inherit passthruFun;
       }
       // sources.python314
@@ -103,6 +107,7 @@
       (callPackage ./cpython (
         {
           self = __splicedPackages.python3Minimal;
+          openssl = __splicedPackages.openssl_3_5;
           inherit passthruFun;
           pythonAttr = "python3Minimal";
           # strip down that python version as much as possible
@@ -118,6 +123,7 @@
 
     pypy27 = callPackage ./pypy {
       self = __splicedPackages.pypy27;
+      openssl = __splicedPackages.openssl_3_5;
       sourceVersion = {
         major = "7";
         minor = "3";
@@ -133,6 +139,7 @@
 
     pypy310 = callPackage ./pypy {
       self = __splicedPackages.pypy310;
+      openssl = __splicedPackages.openssl_3_5;
       sourceVersion = {
         major = "7";
         minor = "3";
@@ -148,6 +155,7 @@
 
     pypy311 = callPackage ./pypy {
       self = __splicedPackages.pypy311;
+      openssl = __splicedPackages.openssl_3_5;
       sourceVersion = {
         major = "7";
         minor = "3";
@@ -164,6 +172,7 @@
     pypy27_prebuilt = callPackage ./pypy/prebuilt_2_7.nix {
       # Not included at top-level
       self = __splicedPackages.pythonInterpreters.pypy27_prebuilt;
+      openssl = __splicedPackages.openssl_3_5;
       sourceVersion = {
         major = "7";
         minor = "3";
@@ -184,6 +193,7 @@
     pypy310_prebuilt = callPackage ./pypy/prebuilt.nix {
       # Not included at top-level
       self = __splicedPackages.pythonInterpreters.pypy310_prebuilt;
+      openssl = __splicedPackages.openssl_3_5;
       sourceVersion = {
         major = "7";
         minor = "3";
@@ -203,6 +213,7 @@
     pypy311_prebuilt = callPackage ./pypy/prebuilt.nix {
       # Not included at top-level
       self = __splicedPackages.pythonInterpreters.pypy311_prebuilt;
+      openssl = __splicedPackages.openssl_3_5;
       sourceVersion = {
         major = "7";
         minor = "3";
