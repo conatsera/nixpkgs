@@ -136,7 +136,7 @@ let
   sharedLibDeps = {
     # TODO: remove this on staging and land with https://github.com/NixOS/nixpkgs/pull/576792
     brotli =
-      if majorVersion == "24" then
+      if majorVersion == "24" || lib.versionAtLeast brotli.version "1.2.1" then
         brotli
       else
         brotli.overrideAttrs (old: {
