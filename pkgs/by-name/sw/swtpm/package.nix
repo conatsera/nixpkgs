@@ -79,6 +79,10 @@ stdenv.mkDerivation (finalAttrs: {
     "--with-cuse"
   ];
 
+  env = lib.optionals (lib.versionAtLeast openssl.version "4.0") {
+    NIX_CFLAGS_COMPILE = "-Wno-error=deprecated-declarations";
+  };
+
   postPatch = ''
     patchShebangs tests/*
 
