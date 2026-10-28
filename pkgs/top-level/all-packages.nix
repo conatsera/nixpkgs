@@ -4343,10 +4343,10 @@ with pkgs;
   # Python interpreters. All standard library modules are included except for tkinter, which is
   # available as `pythonPackages.tkinter` and can be used as any other Python package.
   # When switching these sets, please update docs at ../../doc/languages-frameworks/python.md
-  python3 = python314;
+  python3 = python315;
 
   # pythonPackages further below, but assigned here because they need to be in sync
-  python3Packages = dontRecurseIntoAttrs python314Packages;
+  python3Packages = dontRecurseIntoAttrs python315Packages;
 
   pypy = pypy2;
   pypy2 = pypy27;
