@@ -17,6 +17,7 @@
   attrs,
   pytestCheckHook,
   which,
+  pythonAtLeast,
 
   # for passthru.tests
   enrich,
@@ -55,6 +56,18 @@ buildPythonPackage (finalAttrs: {
     attrs
     pytestCheckHook
     which
+  ];
+
+  
+  disabledTests = []
+  # all of these test are disabled on 3.14 upstream and will probably be disabled for 3.15 upstream in a future release
+  ++ lib.optionals (pythonAtLeast "3.15") [
+    "test_inspect_builtin_function_except_python311"
+    "test_inspect_builtin_function_only_python311"
+    "test_inspect_integer_with_methods_python38_and_python39"
+    "test_inspect_integer_with_methods_python310only"
+    "test_inspect_integer_with_methods_python311"
+    "test_attrs_broken"
   ];
 
   pythonImportsCheck = [ "rich" ];
