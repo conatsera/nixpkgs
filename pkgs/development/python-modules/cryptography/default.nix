@@ -9,6 +9,7 @@
   cffi,
   cryptography-vectors ? (callPackage ./vectors.nix { }),
   fetchFromGitHub,
+  fetchpatch2,
   isPyPy,
   libiconv,
   openssl,
@@ -35,6 +36,13 @@ buildPythonPackage rec {
     inherit pname version src;
     hash = "sha256-OUfcs3MIoEwUx1BQV1ZYnAx9IDEbQUWEaeddwK0LLmQ=";
   };
+
+  patches = [
+    (fetchpatch2 {
+      url = "https://github.com/pyca/cryptography/commit/e83bbe58e373536636baaa7c33a64a6e8f04c953.patch";
+      hash = "sha256-TI7LNHPp5x9LW4WBKjsbpRe12oppptmRmOyKbw3agYs=";
+    })
+  ];
 
   postPatch = ''
     substituteInPlace pyproject.toml \
