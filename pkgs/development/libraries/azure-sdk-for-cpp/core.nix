@@ -1,6 +1,7 @@
 {
   stdenv,
   fetchFromGitHub,
+  fetchpatch2,
   cmake,
   ninja,
   curl,
@@ -23,6 +24,16 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-1OLyTwjfSunwvDMbMTNw0w8txhJxXthtAVeFf7abrIs=";
   };
   sourceRoot = "${finalAttrs.src.name}/sdk/core/azure-core";
+
+  patches = [
+    (fetchpatch2 {
+      # support for openssl 4.x
+      url = "https://github.com/Azure/azure-sdk-for-cpp/commit/7ebdd503aa8da2987f42715a37a031d4d88947db.patch";
+      hash = "sha256-02C8uJPIwfyz2TvDuoq9vpGivN6wIm5TaEUuKQ/ChbE=";
+      excludes = [ "cspell.json" "CHANGELOG.md" ];
+      stripLen = "3";
+    })
+  ];
 
   postPatch = ''
     sed -i '/CMAKE_CXX_STANDARD/d' CMakeLists.txt
