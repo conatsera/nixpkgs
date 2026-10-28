@@ -35,6 +35,10 @@ stdenv.mkDerivation (finalAttrs: {
       url = "https://github.com/OpenSC/OpenSC/commit/814f745b3b6d100295f65f1935edd33d520d33ab.patch";
       hash = "sha256-S8PeXCRAUlkKUPYOl/n5+4QIqWOZtHX3yEDnpFhJO8k=";
     })
+    (fetchpatch {
+      url = "https://github.com/OpenSC/OpenSC/commit/8ad96adc5fea0cef923a2a679600f3a5c4c5bfce.patch";
+      hash = "sha256-YGE7PXkZz/65Voenn3ksdtLEZDZtscc9GvrgaEn1PdM=";
+    })
   ];
 
   nativeBuildInputs = [
