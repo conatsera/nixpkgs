@@ -2,6 +2,7 @@
   stdenv,
   lib,
   fetchFromGitHub,
+  fetchpatch2,
   autoreconfHook,
   go-md2man,
   pkg-config,
@@ -72,6 +73,14 @@ stdenv.mkDerivation (finalAttrs: {
       rm -rf .git
     '';
   };
+
+  patches = [
+    (fetchpatch2 {
+      # Patch for test_ring_buffer_wraparound_partial_drain on non-4KiB page systems
+      url = "https://github.com/containers/crun/commit/ece7b66bff5a65bfca33b64cd9da7f9eaf043c55.patch";
+      hash = "sha256-fWEDknpiloC7JZQlSwAxF0yaRlElAqBXqWna52oQnaM=";
+    })
+  ];
 
   nativeBuildInputs = [
     autoreconfHook
