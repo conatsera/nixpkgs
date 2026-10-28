@@ -3,11 +3,13 @@
   stdenv,
   buildPythonPackage,
   fetchFromGitHub,
+  fetchpatch2,
   gmpy2,
   isPyPy,
   setuptools,
   setuptools-scm,
   pytestCheckHook,
+  pythonAtLeast,
   pytest-xdist,
   hypothesis,
   pexpect,
@@ -26,6 +28,14 @@ buildPythonPackage (finalAttrs: {
     tag = finalAttrs.version;
     hash = "sha256-ykfKrpDri+4n9Y26S7nFl6nF0CV6V0A11ijmt8/apvg=";
   };
+
+  patches = []
+  ++ lib.optionals (pythonAtLeast "3.15") [
+    (fetchpatch2 {
+      url = "https://github.com/mpmath/mpmath/commit/f9822f095481d2f2c34ba09d4c489c9044f58be8.patch";
+      hash = "sha256-AkDpsbwjDwck7AkSOPO5pyGpvgCZitYpm2jxNuU8Rqw=";
+    })
+  ];
 
   build-system = [
     setuptools
