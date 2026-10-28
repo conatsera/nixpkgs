@@ -1,6 +1,7 @@
 {
   stdenv,
   fetchurl,
+  fetchpatch2,
   lib,
   pandoc,
   pkg-config,
@@ -23,6 +24,14 @@ stdenv.mkDerivation (finalAttrs: {
     url = "https://github.com/tpm2-software/tpm2-tools/releases/download/${finalAttrs.version}/tpm2-tools-${finalAttrs.version}.tar.gz";
     sha256 = "sha256-HLcxhcroFLThXHwtCyJkLWQPr0h3X0FWof2S7fhL73M=";
   };
+
+  patches = [
+    (fetchpatch2 {
+      # patch required for openssl 4.x
+      url = "https://github.com/tpm2-software/tpm2-tools/commit/c2b2c4e5cdc5bbc61779eb4271d5c317efb8c067.patch";
+      hash = "sha256-oRhkNKj8i6WkqvMnWeMUtV0jLM/tVztNj4pdEsNriWg=";
+    })
+  ];
 
   nativeBuildInputs = [
     pkg-config
