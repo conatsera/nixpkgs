@@ -13,6 +13,7 @@
   ninja,
   nlohmann_json,
   openssl,
+  opentelemetry-cpp,
   pkg-config,
   protobuf,
   pkgsBuildHost,
@@ -22,24 +23,25 @@
 }:
 let
   # defined in cmake/GoogleapisConfig.cmake
-  googleapisRev = "8cd3749f4b98f2eeeef511c16431979aeb3a6502";
+  googleapisRev = "28769825ec5fa31815f172b0de490a84e74cb97a";
   googleapis = fetchFromGitHub {
     name = "googleapis-src";
     owner = "googleapis";
     repo = "googleapis";
     rev = googleapisRev;
-    hash = "sha256-w7jq21qLEiMhuI20C6iUeSskAfZCkZgDCPu5Flr8D48=";
+    hash = "sha256-P9rMcdgjKbaVcUeZdOXbu1VKSNT5HVhSiv7BGlMQ1ko=";
   };
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "google-cloud-cpp";
-  version = "2.44.0";
+  version = "3.12.0";
 
   src = fetchFromGitHub {
     owner = "googleapis";
     repo = "google-cloud-cpp";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-vE3oGGT33cITdAd4e5Xnlx9tX5Sz+wIFQXzj5hdcGDI=";
+    hash = "sha256-8DHhiV2MCtIECfp7y2/UOTewVcHiS+5wfFzIFIyv4tw=";
+    fetchSubmodules = true;
   };
 
   patches = [
@@ -82,6 +84,7 @@ stdenv.mkDerivation (finalAttrs: {
     protobuf
     gbenchmark
     gtest
+    opentelemetry-cpp
   ];
 
   doInstallCheck = true;
@@ -150,6 +153,8 @@ stdenv.mkDerivation (finalAttrs: {
     # Explicitly set this variable to true as otherwise `universe_domain` will be filtered out
     # See https://github.com/googleapis/google-cloud-cpp/pull/15820 for context
     (lib.cmakeBool "GOOGLE_CLOUD_CPP_ENABLE_UNIVERSE_DOMAIN" true)
+
+    (lib.cmakeBool "GOOGLE_CLOUD_CPP_ENABLE_GRPC" true)
   ]
   ++ lib.optionals (apis != [ "*" ]) [
     (lib.cmakeFeature "GOOGLE_CLOUD_CPP_ENABLE" (lib.concatStringsSep ";" apis))
