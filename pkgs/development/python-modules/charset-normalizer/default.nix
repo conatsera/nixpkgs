@@ -25,6 +25,10 @@ buildPythonPackage (finalAttrs: {
     hash = "sha256-zIN1y9HVwaCqixjRFLn6g/tz95E41m7t7j4eY5jNZMs=";
   };
 
+  postPatch = ''
+    sed -ie 's/84\.1/84\.3/' pyproject.toml
+  '';
+
   build-system = [
     setuptools
   ]
