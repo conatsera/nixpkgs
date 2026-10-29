@@ -186,6 +186,8 @@ chosenStdenv.mkDerivation (finalAttrs: {
 
       # Enable tests to load TPM2 OpenSSL module
       export OPENSSL_MODULES="${openssl-modules}/lib/ossl-modules"
+
+      sed -ie 's/move/copy/' test/integration/fixtures/smimeextensions
     ''
     + lib.optionalString defaultToFapi ''
       # Need to change the default since the tests expect the other way.
