@@ -557,6 +557,8 @@ let
             # patch does not apply
             ++ lib.optional (!lib.versionAtLeast version "24") "test-tls-junk-server"
             ++ lib.optional (majorVersion == "22") "test-tls-alert-handling"
+            # CN no longer consulted for server name verification
+            ++ lib.optional (lib.versionAtLeast openssl.version "4.1") "test-x509-escaping"
           )
         }"
       ];
