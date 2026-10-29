@@ -12,6 +12,7 @@
   sphinxHook,
   sphinx-rtd-theme,
   pytest-rerunfailures,
+  pythonOlder,
 }:
 
 buildPythonPackage rec {
@@ -93,6 +94,10 @@ buildPythonPackage rec {
   ++ lib.optionals stdenv.hostPlatform.is32bit [
     # https://github.com/pyca/pyopenssl/issues/974
     "test_verify_with_time"
+  ]
+  ++ lib.optionals ((lib.versionAtLeast openssl.version) "4.0" && !(pythonOlder "3.14")) [
+    # this test only works when openssl is fully supported by the python version
+    "test_memory_connect"
   ];
 
   meta = {
