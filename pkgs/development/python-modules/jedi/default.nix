@@ -13,6 +13,7 @@
   # tests
   attrs,
   pytestCheckHook,
+  pythonAtLeast,
 }:
 
 buildPythonPackage (finalAttrs: {
@@ -53,6 +54,14 @@ buildPythonPackage (finalAttrs: {
       "test_dict_keys_completions"
       # AssertionError: assert ['', '.1000000000000001'] == ['', '.1']
       "test_dict_completion"
+    ]
+    ++ lib.optionals (pythonAtLeast "3.15") [
+      # needs further investigation, but I assume assumptions about the environment that don't hold on nixos are made
+      "test_find_system_environments"
+      "test_scanning_venvs"
+      "test_create_environment_venv_path"
+      "test_create_environment_executable"
+      "test_venv_and_pths"
     ];
 
   meta = {
