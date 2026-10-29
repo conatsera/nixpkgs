@@ -282,6 +282,13 @@ stdenv.mkDerivation (
         # a new arm64 subtype that gives more pointer authentication machinery.
         # Vendored backport of the patch for LLVM 23
         (getVersionFile "llvm/backport-minimal-arm64e_x1-support.patch")
+      ]
+      ++ lib.optionals ((lib.versionOlder release_version "23") && (lib.versionAtLeast python3.version "3.15")) [
+        (fetchpatch {
+          url = "https://github.com/llvm/llvm-project/commit/0b6a1ef4297bb839fe26041602d32411358e0032.patch";
+          stripLen = 1;
+          hash = "sha256-r5/sHdM8pqxZuCAYa2BtfoREXPav6bi6NCFy65ZezM4=";
+        })
       ];
 
     nativeBuildInputs = [
