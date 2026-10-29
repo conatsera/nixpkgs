@@ -6,6 +6,8 @@
   pip,
   pylint,
   pytestCheckHook,
+  pythonAtLeast,
+  openssl,
 }:
 
 buildPythonPackage (finalAttrs: {
@@ -30,6 +32,12 @@ buildPythonPackage (finalAttrs: {
   disabledTests = [
     # UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html.
     "test_identify_old_namespace_package_protocol"
+  ]
+  ++ lib.optionals (pythonAtLeast "3.14") [
+    "test_typed_dict_required_and_optional_keys"
+  ]
+  ++ lib.optionals ((lib.versionAtLeast openssl.version) "4.0") [
+    "test_ssl_brain"
   ];
 
   disabledTestPaths = [
