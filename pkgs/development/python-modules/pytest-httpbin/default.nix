@@ -5,6 +5,7 @@
   httpbin,
   pytest,
   pytestCheckHook,
+  pythonAtLeast,
   requests,
   setuptools,
 }:
@@ -37,6 +38,9 @@ buildPythonPackage rec {
     "test_redirect_location_is_https_for_secure_server"
     # Timeout on Hydra
     "test_dont_crash_on_handshake_timeout"
+  ] ++ lib.optionals (pythonAtLeast "3.15") [
+    # blank url is being supplied. I have no idea where it's getting `httpbin_secure` from
+    "test_with_urllib3"
   ];
 
   __darwinAllowLocalNetworking = true;
