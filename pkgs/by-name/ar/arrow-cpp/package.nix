@@ -66,7 +66,7 @@
     && !stdenv.hostPlatform.isRiscV64,
   enableS3 ? true,
   # google-cloud-cpp fails to build on RiscV
-  enableGcs ? !stdenv.hostPlatform.isRiscV64,
+  enableGcs ? false,
   enableAzure ? true,
 }:
 
