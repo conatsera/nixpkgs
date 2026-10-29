@@ -29,8 +29,8 @@ buildPythonPackage {
   src = fetchFromGitHub {
     owner = "pypa";
     repo = "distutils";
-    rev = "f10ac6219960991c98b821cf2544bf9c2864ebc2"; # correlate commit from setuptools version
-    hash = "sha256-KzC7zvrC7fsAQhLFZvep/F+yDRzsBDYtir1EA7gdpGM=";
+    rev = "e8eb87855db0e7ff90e8ebc9439949805f0466e1"; # correlate commit from setuptools version
+    hash = "sha256-Xz9Vh7G0DVpdVhmKusMi8MmzKwa3xejxhJeALn94M/c=";
   };
 
   postPatch = ''
