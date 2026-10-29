@@ -136,6 +136,9 @@ stdenv.mkDerivation (finalAttrs: {
 
   doCheck = !stdenv.hostPlatform.isAarch64;
 
+  disabledTests = []
+  ++ lib.optional (stdenv.cc.isGNU && lib.versionAtLeast stdenv.cc.version "16") "test_ccompiler.py";
+
   # During configurePhase, two python scripts are generated and need this. See
   # https://github.com/NixOS/nixpkgs/pull/98316#issuecomment-695785692
   postConfigure = ''
